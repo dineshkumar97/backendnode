@@ -3,7 +3,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import { setServers } from "node:dns/promises";
-// import userEmailRouter from "./src/routes/userEmailRouter.js";
+import userDetailsRouter from "./src/routes/userDetailsRouter.js";
 setServers(["1.1.1.1", "8.8.8.8"]);
 dotenv.config();
 const mongooseString = process.env.DATABASE_URL;
@@ -12,8 +12,8 @@ app.use(cors());
 app.use(express.json());
 
 
+app.use("/api-learn/user", userDetailsRouter);
 
-// app.use("/api/user-email", userEmailRouter);
 
 
 mongoose.connect(mongooseString)
@@ -21,7 +21,6 @@ mongoose.connect(mongooseString)
     console.log('Database connected successfully');
   })
   .catch((err) => {
-    console.log('Error connecting to database: ' + mongooseString);
     console.log('Error received = ' + err);
   });
 
