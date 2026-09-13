@@ -3,7 +3,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import { setServers } from "node:dns/promises";
-import userDetailsRouter from "./src/routes/userDetailsRouter.js";
+import userDetailsRouter from "./routes/userDetailsRouter.js";
 setServers(["1.1.1.1", "8.8.8.8"]);
 dotenv.config();
 const mongooseString = process.env.DATABASE_URL;
