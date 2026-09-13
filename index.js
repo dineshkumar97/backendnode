@@ -7,6 +7,7 @@ import userDetailsRouter from "./src/routes/userDetailsRouter.js";
 setServers(["1.1.1.1", "8.8.8.8"]);
 dotenv.config();
 const mongooseString = process.env.DATABASE_URL;
+const PORT = process.env.PORT || 3000;
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -24,8 +25,8 @@ mongoose.connect(mongooseString)
     console.log('Error received = ' + err);
   });
 
-app.listen(3000, () => {
-    console.log('Server started 3000')
+app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`);
 })
 
 
