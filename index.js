@@ -35,6 +35,7 @@ import { setServers } from "node:dns/promises";
 import serverless from "serverless-http";
 
 import userDetailsRouter from "./src/routes/userDetailsRouter.js";
+import employeeRouter from "./src/routes/employeeRouter.js";
 
 setServers(["1.1.1.1", "8.8.8.8"]);
 
@@ -48,6 +49,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api-learn/user", userDetailsRouter);
+app.use("/api-learn/employee", employeeRouter);
 mongoose.connect(mongooseString)
   .then(() => {
     console.log("Database connected successfully");
