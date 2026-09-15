@@ -25,9 +25,6 @@
 //     console.log('Error received = ' + err);
 //   });
 
-// app.listen(PORT, () => {
-//     console.log(`Server started on port ${PORT}`);
-// })
 
 
 import dotenv from "dotenv";
@@ -51,8 +48,6 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api-learn/user", userDetailsRouter);
-
-// MongoDB connection
 mongoose.connect(mongooseString)
   .then(() => {
     console.log("Database connected successfully");
@@ -61,13 +56,17 @@ mongoose.connect(mongooseString)
     console.log("Database connection error:", err);
   });
 
-// Test API
-app.get("/", (req, res) => {
-  res.json({
-    success: true,
-    message: "Node.js Express Lambda API is working"
-  });
-});
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`);
+})
 
-// Lambda handler
-export const handler = serverless(app);
+
+// Test API 
+// app.get("/", (req, res) => {
+//   res.json({
+//     success: true,
+//     message: "Node.js Express Lambda API is working"
+//   });
+// });
+// export const handler = serverless(app);

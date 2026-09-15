@@ -1,6 +1,6 @@
 import UserDetails from "../models/userDetailsModel.js";
 import bcrypt from 'bcryptjs';
-
+import generationToken from "../tokengeneration/generationToken.js";
 
 export const createUser = async (req, res) => {
     try {
@@ -88,8 +88,10 @@ export const authenticate = async (req, res) => {
             });
         }
         // 5. Login successful
+        const token = generationToken(user);
         return res.status(200).json({
-            message: "Login successful"
+            message: "Login successful",
+            token: token
         });
 
     } catch (error) {
